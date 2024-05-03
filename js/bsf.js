@@ -1,5 +1,3 @@
-//const fs = require('fs');
-
 export default class Grafo {
 
     constructor() {
@@ -24,7 +22,7 @@ export default class Grafo {
         }     
     }
 
-    semearAPartirDeArquivo(nomeArquivo, callback) {
+    recuperarDadosJson(nomeArquivo, callback) {
         try {
             fetch(nomeArquivo)
                 .then(response => {
@@ -49,18 +47,6 @@ export default class Grafo {
                 .catch(error => {
                     console.error(error); 
             });
-
-            // const dados = JSON.parse(fs.readFileSync(nomeArquivo, 'utf8')); 
-            // dados.forEach(filme => {
-            //     const elenco = filme.cast;
-            //     this.adicionarVertice(filme.title);
-            //     elenco.forEach(ator => {
-            //         this.adicionarVertice(ator);                
-            //         this.adicionarAresta(ator,filme.title);
-            //     })
-                
-            // });
-            
         } catch (erro) {
             console.error("Erro ao semear o grafo:", erro);
         }

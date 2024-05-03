@@ -51,7 +51,7 @@ button.addEventListener('click', () =>{
 
     const grafo = new Grafo();
     
-    grafo.semearAPartirDeArquivo('latest_movies.json', () => {
+    grafo.recuperarDadosJson('latest_movies.json', () => {
         const caminho = grafo.bsf(atorOrigem, atorDestino);  
     
         if(caminho == null){
