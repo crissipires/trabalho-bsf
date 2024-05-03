@@ -63,33 +63,68 @@ export default class Grafo {
 
         while(fila.length > 0){
             vertice =  fila.shift()
-
+            
             console.log("--------------------------------------------------")
             console.log("Vertice " + vertice)       
             console.log(window.dados[vertice])
 
-                    for (const vizinho of window.dados[vertice]) {
-                        if(!caminho.hasOwnProperty(vizinho)){                  
-                            fila.push(vizinho)
+                for (const vizinho of window.dados[vertice]) {
+                    if(!caminho.hasOwnProperty(vizinho)){                  
+                        fila.push(vizinho)                   
+                        
+                        console.log("vizinho = "+ vizinho)
+                        console.log("caminho do vertice pai = " +  caminho[vertice])
+                        console.log("concatenacao = " + caminho[vertice].concat(vizinho))
+                        
+                        caminho[vizinho] = caminho[vertice].concat(vizinho);
 
-                            console.log("vizinho = "+ vizinho)
-                            console.log("caminho do vertice pai = " +  caminho[vertice])
-                            console.log("concatenacao = " + caminho[vertice].concat(vizinho))
-                            
-                            caminho[vizinho] = caminho[vertice].concat(vizinho);
-                            
-                            console.log("Caminho de " +vizinho+ " = "+ caminho[vizinho])
-                        }
+                        console.log("Caminho de " +vizinho+ " = "+ caminho[vizinho])
 
-                        if(vizinho === verticeDestino){
-                            console.log("encontrou " + caminho[vizinho])
-                            
-                            return caminho[vizinho];
-                        }  
                     }
+
+                    if(vizinho === verticeDestino){
+                        return caminho[vizinho];
+                    }  
+                }
             console.log("--------------------------------------------------")
         } 
 
         return null;
     }
+
+     
+    bsf6(verticeOrigem, verticeDestino) {
+        const caminhos = []; 
+        const fila = [{ vertice: verticeOrigem, caminho: [verticeOrigem], arestas: 0 }];
+    
+        while (fila.length > 0) {
+            const { vertice, caminho, arestas } = fila.shift();
+    
+            if (arestas === 6) {
+                continue; 
+            }
+    
+            for (const vizinho of window.dados[vertice]) {
+                if (!caminho.includes(vizinho)) {
+                    const novoCaminho = caminho.concat(vizinho);
+                    const novasArestas = arestas + 1;
+    
+                    if (vizinho === verticeDestino) {
+                        caminhos.push(novoCaminho);
+                    } else {
+                        fila.push({ vertice: vizinho, caminho: novoCaminho, arestas: novasArestas });
+                    }
+                }
+            }
+        }
+        console.log(caminhos)
+        return caminhos;
+
+
+    }
+    
+    
+    
+    
 }
+    

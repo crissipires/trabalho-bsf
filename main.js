@@ -42,9 +42,11 @@ function processarDados(dados) {
 
 const selectAtorOrigem = document.getElementById('atorOrigem');
 const selectAtorDestino = document.getElementById('atorDestino');
-const button = document.getElementById('botao');
 
-button.addEventListener('click', () =>{
+const buttonBsf = document.getElementById('botaobsf');
+const buttonBsf6 = document.getElementById('botaobsf6');
+
+buttonBsf.addEventListener('click', () =>{
 
     const atorOrigem = selectAtorOrigem.value;
     const atorDestino = selectAtorDestino.value;
@@ -52,18 +54,47 @@ button.addEventListener('click', () =>{
     const grafo = new Grafo();
     
     grafo.recuperarDadosJson('latest_movies.json', () => {
-        const caminho = grafo.bsf(atorOrigem, atorDestino);  
+        const caminhos = grafo.bsf(atorOrigem, atorDestino);  
     
-        if(caminho == null){
+        if(caminhos == null){
             res.innerHTML = "Caminho não encontrado!" 
             return;
         }
 
-        let comprimento = caminho.length;
-        let caminhoTratado = caminho.join(" ➯ ");
+        let comprimento = caminhos.length -1;
+        let caminhoTratado = caminhos.join(" ➯ ");
 
         res.innerHTML = caminhoTratado            
         resComprimento.innerHTML  = "Comprimento de tamanho " + comprimento;
+
+
+    });
+
+})
+
+buttonBsf6.addEventListener('click', () =>{
+
+    const atorOrigem = selectAtorOrigem.value;
+    const atorDestino = selectAtorDestino.value;
+
+    const grafo = new Grafo();
+    
+    grafo.recuperarDadosJson('latest_movies.json', () => {
+        const caminhos = grafo.bsf6(atorOrigem, atorDestino);  
+    
+        if(caminhos == null){
+            res.innerHTML = "Caminho não encontrado!" 
+            return;
+        }
+
+        res.innerHTML = "<h3>Caminhos encontrados:</h3>";
+        caminhos.forEach((caminho, index) => {
+            let comprimento = caminho.length -1;
+            let caminhoFormatado = caminho.join(" ➯ ");
+            res.innerHTML += "<p><strong>Caminho " + (index + 1) + ":</strong> " + caminhoFormatado + ". <strong>Comprimento: " + comprimento + "<strong></p>";
+  
+        });
+
 
     });
 
