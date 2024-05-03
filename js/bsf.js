@@ -53,56 +53,41 @@ export default class Grafo {
 
     }
 
-    show(){
-        for(let vertice in window.dados){
-        console.log("Vertice: " + vertice + "\n Arestas -> " + window.dados[vertice])
-        }
-    }
-
-    grau(){
-        for(let vertice in this.listaAdj){
-            console.log("Vertice: " + vertice + " tem grau -> " + this.listaAdj[vertice].length)
-            }
-    }
-
-   
-
     bsf(verticeOrigem, verticeDestino){
+        let vertice;
 
         const fila = [verticeOrigem];
 
         const caminho = {};
         caminho[verticeOrigem] = [verticeOrigem];
 
-        let marcado = {};
-        let vertice;
         while(fila.length > 0){
-
             vertice =  fila.shift()
+
             console.log("--------------------------------------------------")
             console.log("Vertice " + vertice)       
-           
-                console.log(window.dados[vertice])
+            console.log(window.dados[vertice])
+
                     for (const vizinho of window.dados[vertice]) {
-
-
-                        if(!marcado[vizinho]){ 
-                            marcado[vizinho] = true;                      
+                        if(!caminho.hasOwnProperty(vizinho)){                  
                             fila.push(vizinho)
-                            console.log("vizinho "+ vizinho)
-                            console.log("fila " + fila)
-                            console.log("caminho do vertice " +  caminho[vertice])
-                            console.log("concatenacao " + caminho[vertice].concat(vizinho))
+
+                            console.log("vizinho = "+ vizinho)
+                            console.log("caminho do vertice pai = " +  caminho[vertice])
+                            console.log("concatenacao = " + caminho[vertice].concat(vizinho))
+                            
                             caminho[vizinho] = caminho[vertice].concat(vizinho);
+                            
                             console.log("Caminho de " +vizinho+ " = "+ caminho[vizinho])
                         }
 
                         if(vizinho === verticeDestino){
                             console.log("encontrou " + caminho[vizinho])
+                            
                             return caminho[vizinho];
                         }  
-                }
-                console.log("--------------------------------------------------")
+                    }
+            console.log("--------------------------------------------------")
         } 
 
         return null;
