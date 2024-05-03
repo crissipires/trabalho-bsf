@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e4e4e4;
+    margin: 0;
+    padding: 0;
+    background-image: url("../img/desenho-holywood.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:1550px 900px;
+}
+
+.container {
+
+    box-shadow: 5px 5px 5px rgba(0, 0,0, 0.5296);
+    border-radius: 10px;
+    background-color: #f1f1f1;
+    width: 500px;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#botao {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#botao {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+#res, #resComprimento {
+    margin-top: 20px;
+}
